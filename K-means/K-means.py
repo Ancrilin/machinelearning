@@ -1,9 +1,6 @@
-import numpy as np
-import os
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import datasets
-import random
 
 iris = datasets.load_iris()
 X = iris.data[:, 2:4]
@@ -16,16 +13,16 @@ X = iris.data[:, 2:4]
 # plt.show()
 
 class Kmeans():
-    def __init__(self, n_cluster, tol=1e-4, n_init=10, step=150):
+    def __init__(self, n_cluster, tol=1e-4, step=150):
         self.k = n_cluster
         self.tol = tol
-        self.n_init = n_init  # 进行多次聚类，选择最好的一次
+        # self.n_init = n_init  # 进行多次聚类，选择最好的一次
         self.times = 0
         self.step = step
 
     def fit(self, dataset):
         centroid = self.init_centers(dataset)
-        print("init centers")
+        print("init centroid")
         print(centroid)
         labels = self.assign_points(dataset, centroid)
         self.show(labels, dataset, centroid)
@@ -71,7 +68,7 @@ class Kmeans():
         for i in range(self.k):
             flag = 1
             while (flag):
-                t = random.randint(0, len(dataset))
+                t = np.random.randint(0, len(dataset))
                 if t not in num:
                     num.append(t)
                     flag = 0
