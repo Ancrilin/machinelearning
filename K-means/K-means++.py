@@ -63,6 +63,7 @@ class KmeansPPlus():
                 t_centroids[i] = centroid_mean
         return t_centroids
 
+    #离当前已有聚类中心较远的点有更大的概率被选为下一个聚类中心
     def init_centroids(self, dataset):#初始化质心，出了第一个随机，其余根据概率选择
         rand = np.random.randint(0, len(dataset))
         centroids = np.zeros([self.k, len(dataset[0])], dtype=np.float)
